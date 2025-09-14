@@ -65,12 +65,13 @@ fun GreetingPreview() {
 @Composable
 fun ToggleCard() {
     var funFact by rememberSaveable { mutableStateOf("Tap to see a fun fact!")}
+    var clicked by rememberSaveable { mutableStateOf(false)}
     Card(colors = CardDefaults.cardColors(
         containerColor = Color(0xfff0f3a2),
         contentColor = Color.Black
     ), modifier = Modifier.padding(30.dp)
         .size(width = 300.dp, height = 200.dp),
-        onClick = {funFact = "Kotlin was created by JetBrains!"} ) {
+        onClick = {clicked = !clicked; funFact = if (clicked) {"Kotlin was created by JetBrains!"} else {"Tap to see a fun fact!"} } ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(text = funFact)
         }
